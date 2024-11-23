@@ -1,2 +1,4 @@
 # locality
-physical mesh netork running on STM32 arm
+physical mesh network running on STM32 arm.
+
+More to come.. 

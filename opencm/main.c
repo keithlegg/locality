@@ -24,6 +24,10 @@ static void gpio_setup(void)
 
 
 
+//static void east_port_setup(void)
+
+//static void west_port_setup(void)
+
 static void north_port_setup(void)
 {
     // Enable GPIOA clock. 
@@ -67,26 +71,25 @@ static void north_port_setup(void)
 
 }
 
-
 static void south_port_setup(void)
 {
 
     rcc_periph_clock_enable(RCC_GPIOB);
 
     gpio_set_mode(GPIOB, GPIO_MODE_OUTPUT_2_MHZ,
-              GPIO_CNF_OUTPUT_PUSHPULL, GPIO5); 
+              GPIO_CNF_OUTPUT_PUSHPULL, GPIO10); 
 
     gpio_set_mode(GPIOB, GPIO_MODE_OUTPUT_2_MHZ,
-              GPIO_CNF_OUTPUT_PUSHPULL, GPIO6);    
+              GPIO_CNF_OUTPUT_PUSHPULL, GPIO11);    
 
     gpio_set_mode(GPIOB, GPIO_MODE_OUTPUT_2_MHZ,
-              GPIO_CNF_OUTPUT_PUSHPULL, GPIO7);  
+              GPIO_CNF_OUTPUT_PUSHPULL, GPIO12);  
 
     gpio_set_mode(GPIOB, GPIO_MODE_OUTPUT_2_MHZ,
-              GPIO_CNF_OUTPUT_PUSHPULL, GPIO8);  
+              GPIO_CNF_OUTPUT_PUSHPULL, GPIO13);  
 
     gpio_set_mode(GPIOB, GPIO_MODE_OUTPUT_2_MHZ,
-              GPIO_CNF_OUTPUT_PUSHPULL, GPIO9); 
+              GPIO_CNF_OUTPUT_PUSHPULL, GPIO14); 
 
     //set the pull up ON (default is OFF)
     /*
@@ -132,11 +135,11 @@ static void test_south_port(void)
 {
     int dv = 100000;
 
-    blinkwait(dv, GPIOB, GPIO5); 
-    blinkwait(dv, GPIOB, GPIO6); 
-    blinkwait(dv, GPIOB, GPIO7);     
-    blinkwait(dv, GPIOB, GPIO8); 
-    blinkwait(dv, GPIOB, GPIO9); 
+    blinkwait(dv, GPIOB, GPIO10); 
+    blinkwait(dv, GPIOB, GPIO11); 
+    blinkwait(dv, GPIOB, GPIO12);     
+    blinkwait(dv, GPIOB, GPIO13); 
+    blinkwait(dv, GPIOB, GPIO14); 
 }
 
 

@@ -1,0 +1,45 @@
+
+#GENERAL PINS 
+    male pins (springs)      - ground is on the RIGHT 
+    female pins (no springs) - ground is on the LEFT
+
+
+#NORTH PORT 
+    female, ground on left
+    pin0 - GND
+    pin1 - GPIOA, GPIO0
+    pin2 - GPIOA, GPIO1
+    pin3 - GPIOA, GPIO2
+    pin4 - GPIOA, GPIO3
+    pin5 - GPIOA, GPIO4
+
+
+#EAST PORT (POWER LED, SWD pins face East)
+    female, ground on left
+    pin0 - GND
+    pin1 - GPIOB, GPIO5
+    pin2 - GPIOB, GPIO6
+    pin3 - GPIOB, GPIO7
+    pin4 - GPIOB, GPIO8
+    pin5 - GPIOB, GPIO9
+
+
+#SOUTH PORT 
+    male, ground on right
+    pin0 - 
+    pin1 - 
+    pin2 - 
+    pin3 - 
+    pin4 - 
+    pin5 - GND
+
+
+#WEST PORT (USB port faces West)
+    male, ground on left
+    pin0 - 
+    pin1 - 
+    pin2 - 
+    pin3 - 
+    pin4 - 
+    pin5 - GND
+

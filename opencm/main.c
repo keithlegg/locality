@@ -24,6 +24,23 @@ static void gpio_setup(void)
 
 
 
+static void rgb_led_setup(void)
+{
+    // Enable GPIOA clock. 
+    rcc_periph_clock_enable(RCC_GPIOB);
+
+    gpio_set_mode(GPIOB, GPIO_MODE_OUTPUT_2_MHZ,
+              GPIO_CNF_OUTPUT_PUSHPULL, GPIO7); 
+
+    gpio_set_mode(GPIOB, GPIO_MODE_OUTPUT_2_MHZ,
+              GPIO_CNF_OUTPUT_PUSHPULL, GPIO8);    
+
+    gpio_set_mode(GPIOB, GPIO_MODE_OUTPUT_2_MHZ,
+              GPIO_CNF_OUTPUT_PUSHPULL, GPIO9);  
+
+}
+
+
 //static void east_port_setup(void)
 
 //static void west_port_setup(void)
@@ -143,16 +160,28 @@ static void test_south_port(void)
 }
 
 
+static void test_leds(void)
+{
+    int dv = 100000;
+
+    blinkwait(dv, GPIOB, GPIO7); 
+    blinkwait(dv, GPIOB, GPIO8); 
+    blinkwait(dv, GPIOB, GPIO9);     
+}
+
+
 int main(void) 
 {
     north_port_setup();
     south_port_setup();
+    rgb_led_setup();
 
     while(1) {
         //poll_button_state();
 
         test_north_port();
         test_south_port();
+        test_leds();
     }
 
 }

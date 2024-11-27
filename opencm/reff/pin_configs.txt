@@ -1,0 +1,81 @@
+
+
+TODO:
+    add a multiplexer chip to manage all ports with less pins?
+
+
+
+###############################################
+         Cute little diagram :
+
+                 NORTH
+              
+              G
+              N A A A A A
+              D 0 1 2 3 4
+    
+              0 1 2 3 4 5
+              | | | | | |
+             -------------
+  W       0-|             |-5        E 
+  E       1-|    |  |     |-4        A
+  S       2-|             |-3        S
+  T       3-|  \______/   |-2        T
+          4-|             |-1
+      GND 5-|             |-0 GND      
+             -------------
+              | | | | | |
+              0 1 2 3 4 5
+              
+              G B B B B B  
+              N 1 1 1 1 1
+              D 0 1 2 3 4
+
+                SOUTH 
+###############################################
+
+
+
+
+#GENERAL PINS 
+    male pins (springs)      - ground is on the RIGHT 
+    female pins (no springs) - ground is on the LEFT
+
+
+#NORTH PORT 
+    female, ground on left
+    pin0 - GND
+    pin1 - GPIOA, GPIO0
+    pin2 - GPIOA, GPIO1
+    pin3 - GPIOA, GPIO2
+    pin4 - GPIOA, GPIO3
+    pin5 - GPIOA, GPIO4
+
+#SOUTH PORT 
+    male, ground on right
+    pin0 - GPIOB, GPIO10
+    pin1 - GPIOB, GPIO11
+    pin2 - GPIOB, GPIO12
+    pin3 - GPIOB, GPIO13
+    pin4 - GPIOB, GPIO14    
+    pin5 - GND
+
+
+#EAST PORT (POWER LED, SWD pins face East)
+    female, ground on left
+    pin0 - GND
+    pin1 - 
+    pin2 - 
+    pin3 - 
+    pin4 - 
+    pin5 - 
+
+#WEST PORT (USB port faces West)
+    male, ground on left
+    pin0 - 
+    pin1 - 
+    pin2 - 
+    pin3 - 
+    pin4 - 
+    pin5 - GND
+

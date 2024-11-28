@@ -1,9 +1,6 @@
-
-
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
 
-#include "common.h"
 
 
 
@@ -50,13 +47,15 @@ void south_port_setup_in(void)
               GPIO_CNF_INPUT_PULL_UPDOWN, GPIO14); 
 
     //set the pull up ON (default is OFF)
-    /*
-      gpio_set(GPIOB, GPIO5);
-    */
+    gpio_set(GPIOB, GPIO10);
+    gpio_set(GPIOB, GPIO11);
+    gpio_set(GPIOB, GPIO12);
+    gpio_set(GPIOB, GPIO13);
+    gpio_set(GPIOB, GPIO14);              
 
     //set the pull ups OFF    
     /*
-      gpio_clear(GPIOB, GPIO5);
+    gpio_clear(GPIOB, GPIO5);
     */
 
 }

@@ -9,7 +9,7 @@ LDFLAGS += bluepill.ld
 
 SHARED_DIR = ../common
 CFILES = main.c
-CFILES += common.c north_port.c south_port.c
+CFILES += common.c north_port.c south_port.c test_ports.c
 #AFILES += api-asm.S
 
 # TODO - you will need to edit these two lines!

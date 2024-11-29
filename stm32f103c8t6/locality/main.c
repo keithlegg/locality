@@ -36,13 +36,13 @@ int main(void)
 
     while(1) {
         //test_north_port();
-        test_south_port();
-        // test_leds();
+        //test_south_port();
+        //test_leds();
 
         //show_connection_state();
         
         //pass_south_to_north();
-        //pass_north_to_south();
+        pass_north_to_south();
 
     }
 

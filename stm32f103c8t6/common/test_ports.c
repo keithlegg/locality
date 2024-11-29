@@ -1,6 +1,7 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
 
+extern south_is_connected;
 
 /*
 ###############################################
@@ -60,6 +61,7 @@ static void poll_button_state(void)
 
 void pass_north_to_south(void)
 {
+    //rgb_led_off();
 
     //south p0 is ground 
     int sthprt = gpio_port_read(GPIOA);
@@ -95,10 +97,22 @@ void pass_north_to_south(void)
             
     if(sthprt&(1<<4))
     {
-        gpio_set(GPIOB, GPIO14);            
+        gpio_set(GPIOB, GPIO14); 
+                gpio_set(GPIOB, GPIO7);            
     }else{
-        gpio_clear(GPIOB, GPIO14);            
+        gpio_clear(GPIOB, GPIO14);  
+                gpio_clear(GPIOB, GPIO7);           
     } 
+
+    /*
+    //show LED status 
+    if(sthprt&(1<<1)){ 
+        //south_is_connected=true;
+        gpio_set(GPIOB, GPIO7); 
+    }else{
+        //south_is_connected=false;        
+        gpio_clear(GPIOB, GPIO7); 
+    }*/
 }
 
 /***************************************************/

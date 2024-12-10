@@ -12,6 +12,10 @@ bool east_is_connected;
 
 
 
+
+//void show_connection_state(void)
+
+
 void show_connection_state(void)
 {
     if ( south_is_connected == true)

@@ -8,8 +8,14 @@ BUILD_DIR = bin
 LDFLAGS += bluepill.ld
 
 SHARED_DIR = ../common
+
 CFILES = main.c
+
 CFILES += common.c north_port.c south_port.c test_ports.c
+#CFILES += dwt_stm32_delay.c 
+CFILES += stm32_sw_i2c.c 
+
+
 #AFILES += api-asm.S
 
 # TODO - you will need to edit these two lines!

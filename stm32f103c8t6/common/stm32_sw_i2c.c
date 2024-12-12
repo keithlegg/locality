@@ -69,13 +69,33 @@ void I2C_write_bit(uint8_t b)
 
 /*******************************/
 
- 
+
+
+void setup_i2c_write(void)
+{   
+
+    rcc_periph_clock_enable(SW_I2C_RCC_GPIO);
+
+    gpio_set_mode(SW_I2C_SDA_GPIO_Port, GPIO_MODE_OUTPUT_2_MHZ,
+              GPIO_CNF_OUTPUT_PUSHPULL, SW_I2C_SDA_Pin); 
+    gpio_set_mode(SW_I2C_SCL_GPIO_Port, GPIO_MODE_OUTPUT_2_MHZ,
+              GPIO_CNF_OUTPUT_PUSHPULL, SW_I2C_SCL_Pin); 
+   
+
+} 
+
 void setup_i2c_read(void)
 {
-    rcc_periph_clock_enable(SW_I2C_SDA_GPIO_Port);
+    rcc_periph_clock_enable(SW_I2C_RCC_GPIO);
 
     gpio_set_mode(SW_I2C_SDA_GPIO_Port, GPIO_MODE_INPUT,
-              GPIO_CNF_INPUT_PULL_UPDOWN, SW_I2C_SDA_Pin);  
+              GPIO_CNF_INPUT_PULL_UPDOWN, SW_I2C_SDA_Pin); 
+    gpio_set_mode(SW_I2C_SCL_GPIO_Port, GPIO_MODE_INPUT,
+              GPIO_CNF_INPUT_PULL_UPDOWN, SW_I2C_SCL_Pin); 
+    
+    //set the pull ups ON (default is OFF)
+    gpio_set(SW_I2C_SDA_GPIO_Port, SW_I2C_SDA_Pin);
+    gpio_set(SW_I2C_SCL_GPIO_Port, SW_I2C_SCL_Pin);
 
 }
  

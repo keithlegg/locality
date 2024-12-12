@@ -39,16 +39,43 @@ void I2C_bus_init(uint8_t scl_pin, uint8_t sda_pin, uint8_t port){
 }
 */
 
+
+ 
 int main(void)
 {
-    setup_i2c_read();
+    //setup_i2c_read();
+    setup_i2c_write();
 
-    I2C_init();
+    //north_port_setup_in();
+
+    //I2C_init();
+
+    //I2C_start_cond
+
+    while(1){
+        I2C_send_byte(0xff, 0x55);
+        for (int i = 0; i < 100; ++i) __asm__("nop");
+
+        //I2C_write_byte(0x33, true, false);
+
+        //#define I2C_CLEAR_SDA gpio_clear(SW_I2C_SDA_GPIO_Port, SW_I2C_SDA_Pin);
+        //#define I2C_SET_SDA gpio_set(SW_I2C_SDA_GPIO_Port, SW_I2C_SDA_Pin);
+        //#define I2C_CLEAR_SCL gpio_clear(SW_I2C_SCL_GPIO_Port, SW_I2C_SCL_Pin);
+        //#define I2C_SET_SCL gpio_set(SW_I2C_SCL_GPIO_Port, SW_I2C_SCL_Pin);
+        //#define I2C_DELAY DWT_Delay_us(5); // 5 microsecond delay
+
+        /* 
+        I2C_write_bit(0x00);
+        for (int i = 0; i < 100; ++i) __asm__("nop");
+        I2C_write_bit(0xaa);
+        for (int i = 0; i < 100; ++i) __asm__("nop");   
+        */  
+    }
 
     return 1;
 }
 
-
+ 
 
 
 

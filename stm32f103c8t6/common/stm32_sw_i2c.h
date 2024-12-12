@@ -11,9 +11,21 @@
 #define __STM32_SW_I2C_H
 
 #include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/rcc.h>
+
+
+#define SW_I2C_RCC_GPIO RCC_GPIOA
+
+#define SW_I2C_SCL_GPIO_Port GPIOA
+#define SW_I2C_SCL_Pin GPIO0
+
+#define SW_I2C_SDA_GPIO_Port GPIOA 
+#define SW_I2C_SDA_Pin GPIO1
 
 
 /*
+HAL CODE 
+
 #define I2C_CLEAR_SDA HAL_GPIO_WritePin(SW_I2C_SDA_GPIO_Port, SW_I2C_SDA_Pin, GPIO_PIN_RESET);
 #define I2C_SET_SDA HAL_GPIO_WritePin(SW_I2C_SDA_GPIO_Port, SW_I2C_SDA_Pin, GPIO_PIN_SET);
 //#define I2C_READ_SDA {if (HAL_GPIO_ReadPin(SW_I2C_SDA_GPIO_Port, SW_I2C_SDA_Pin)) == GPIO_PIN_SET) return 1; else return 0; return 0;};
@@ -22,12 +34,6 @@
 #define I2C_DELAY DWT_Delay_us(5); // 5 microsecond delay
 //void I2C_bus_init(uint8_t scl_pin, uint8_t sda_pin, uint8_t port);
 */
-
-
-#define SW_I2C_SDA_GPIO_Port GPIOA 
-#define SW_I2C_SCL_GPIO_Port GPIOA
-#define SW_I2C_SDA_Pin 1
-#define SW_I2C_SCL_Pin 2
 
 #define I2C_CLEAR_SDA gpio_clear(SW_I2C_SDA_GPIO_Port, SW_I2C_SDA_Pin);
 #define I2C_SET_SDA gpio_set(SW_I2C_SDA_GPIO_Port, SW_I2C_SDA_Pin);
@@ -38,6 +44,7 @@
 
 void DWT_Delay_us( uint32_t );
 
+void setup_i2c_write(void);
 void setup_i2c_read(void);
 
 void I2C_init(void);

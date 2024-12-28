@@ -20,8 +20,8 @@ void DWT_Delay_us( uint32_t microseconds)
 {
 
   //DEBUG probably not right - keith just put this here to get moving  
-  for (int i = 0; i < microseconds; ++i) __asm__("nop");
-
+  //the orginial HAL code had a premultiplier to calc exact time based on clock speed 
+  for (uint32_t i = 0; i < microseconds; ++i) __asm__("nop");
 }
 
 

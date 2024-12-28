@@ -70,7 +70,7 @@ void north_port_setup_out(void)
 
 void test_north_port(void)
 {
-    int dv = 100000;
+    int dv = 200000;
 
     blinkwait(dv, GPIOA, GPIO0); 
     blinkwait(dv, GPIOA, GPIO1); 

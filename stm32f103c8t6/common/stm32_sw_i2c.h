@@ -16,6 +16,9 @@
 
 #define SW_I2C_RCC_GPIO RCC_GPIOA
 
+//DEBUG - BREAKS IF YOU SWAP THE PIN ASSIGNMENT OF THESE 
+//DEBUG - SCL NEEDS TO BE LOWER PIN NUMBER THAN SDA TO WORK 
+
 #define SW_I2C_SCL_GPIO_Port GPIOA
 #define SW_I2C_SCL_Pin GPIO0
 
@@ -37,8 +40,10 @@ HAL CODE
 
 #define I2C_CLEAR_SDA gpio_clear(SW_I2C_SDA_GPIO_Port, SW_I2C_SDA_Pin);
 #define I2C_SET_SDA gpio_set(SW_I2C_SDA_GPIO_Port, SW_I2C_SDA_Pin);
+
 #define I2C_CLEAR_SCL gpio_clear(SW_I2C_SCL_GPIO_Port, SW_I2C_SCL_Pin);
 #define I2C_SET_SCL gpio_set(SW_I2C_SCL_GPIO_Port, SW_I2C_SCL_Pin);
+
 #define I2C_DELAY DWT_Delay_us(5); // 5 microsecond delay
 
 

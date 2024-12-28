@@ -62,7 +62,7 @@ void south_port_setup_in(void)
 
 void test_south_port(void)
 {
-    int dv = 100000;
+    int dv = 200000;
 
     blinkwait(dv, GPIOB, GPIO10); 
     blinkwait(dv, GPIOB, GPIO11); 

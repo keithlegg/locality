@@ -16,12 +16,19 @@ CFILES += common.c north_port.c south_port.c test_ports.c
 CFILES += stm32_sw_i2c.c 
 CFILES += blocknet.c 
 
-
 #AFILES += api-asm.S
 
-# TODO - you will need to edit these two lines!
+
+###################################
+# TODO - you will need to edit these  
 DEVICE=stm32f1
-OOCD_FILE = board/thisisbroken.cfg
+OOCD_INTERFACE=/usr/share/openocd/scripts/interface/stlink.cfg
+OOCD_TARGET=/usr/share/openocd/scripts/target/stm32f1x.cfg
+# OOCD_FILE - eg my.openocd.cfg
+#    This overrides interface/target above, and is used as just -f FILE
+
+
+###################################
 
 
 # You shouldn't have to edit anything below here.
@@ -37,3 +44,10 @@ include $(OPENCM3_DIR)/mk/genlink-rules.mk
 .PHONY: program
 program:
 	st-flash write $(PROJECT).bin 0x8000000 
+
+
+.PHONY: clearchip
+clearchip:
+	st-flash erase 
+
+

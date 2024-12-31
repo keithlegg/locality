@@ -20,24 +20,24 @@
 //DEBUG - BREAKS IF YOU SWAP THE PIN ASSIGNMENT OF THESE 
 //SCL NEEDS TO BE LOWER PIN# THAN SDA ?
 
- 
+
+/* 
 // TX NORTH PORT (TESTING)
 #define SW_BNET_RCC_GPIO RCC_GPIOA
 #define SW_BNET_SCL_GPIO_Port GPIOA
 #define SW_BNET_SCL_Pin GPIO0
 #define SW_BNET_SDA_GPIO_Port GPIOA 
 #define SW_BNET_SDA_Pin GPIO1
- 
+*/
 
 
-/*
 // RX SOUTH PORT (TESTING)
 #define SW_BNET_RCC_GPIO RCC_GPIOB
 #define SW_BNET_SCL_GPIO_Port GPIOB
-#define SW_BNET_SCL_Pin GPIO10
+#define SW_BNET_SCL_Pin GPIO14
 #define SW_BNET_SDA_GPIO_Port GPIOB 
-#define SW_BNET_SDA_Pin GPIO11
-*/
+#define SW_BNET_SDA_Pin GPIO13
+
 
 
 /////////////////////////////////////////////////////////
@@ -49,7 +49,13 @@
 #define BNET_CLEAR_SCL gpio_clear(SW_BNET_SCL_GPIO_Port, SW_BNET_SCL_Pin);
 #define BNET_SET_SCL gpio_set(SW_BNET_SCL_GPIO_Port, SW_BNET_SCL_Pin);
 
-#define BNET_DELAY bnet_delay_us(5); // 5 microsecond delay
+
+//DEBUG - SLOWED DOWN FOR TESTING 
+//#define BNET_DELAY bnet_delay_us(5); // 5 microsecond delay
+
+//set the speed waaaay down 
+#define BNET_DELAY bnet_delay_us(2000); 
+
 
 
 void bnet_delay_us( uint32_t );
@@ -60,12 +66,14 @@ void setup_bnet_read(void);
 void bnet_init(void);
 
 void bnet_start_cond(void);
-
 void bnet_stop_cond(void);
 
 void bnet_write_bit(uint8_t b);
 
+void bnet_testread();
+
 uint8_t bnet_read_SDA(void);
+
 uint8_t bnet_read_bit(void);
 
 _Bool bnet_write_byte(uint8_t B, _Bool start, _Bool stop);

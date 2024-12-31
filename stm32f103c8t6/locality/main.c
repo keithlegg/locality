@@ -1,4 +1,30 @@
+/*
 
+# dont forget to update firmware on the programmer 
+
+#show the st-link hardware 
+st-info --probe
+
+# may need to verify chip ID and fix in openocd target  - I set mine to "0" to accept any chip 
+
+# openocd only works after a "st-flash erase" operation 
+
+openocd -f /usr/share/openocd/scripts/interface/stlink.cfg -f /usr/share/openocd/scripts/target/stm32f1x.cfg
+
+## stlink-v2.cfg is deprecated use the above command 
+## openocd -f /usr/share/openocd/scripts/interface/stlink-v2.cfg -f /usr/share/openocd/scripts/target/stm32f1x.cfg
+
+# run the debugger locally 
+gdb-multiarch ./locality.elf 
+
+(gdb) target extended-remote localhost:3333
+(gbd) lay next 
+(gbd) break main 
+(gbd) c 
+#     c is continue 
+
+
+*/
 
 
 #include <libopencm3/stm32/rcc.h>
@@ -23,7 +49,96 @@ extern bool west_is_connected;
 extern bool east_is_connected;
 
 
+
+
+
+
+
+int main(void)
+{
+    rgb_led_setup();
+
+    while(1){
+
+        gpio_clear(GPIOB, GPIO7); 
+        gpio_set(GPIOB, GPIO8);     
+        for (int i = 0; i < 1000; ++i) __asm__("nop");
+
+        gpio_set(GPIOB, GPIO7);  
+        gpio_clear(GPIOB, GPIO8);     
+        for (int i = 0; i < 1000; ++i) __asm__("nop");
+
+    }
+
+    return 1;
+} 
+  
+
+//////////////////////////////////////////////
+
+
 /*
+//TX TEST 
+int main(void)
+{
+    setup_bnet_write();
+    while(1){
+        //setup_bnet_write();
+       
+        bnet_send_byte(0xff, 0x02);
+        for (int i = 0; i < 1000; ++i) __asm__("nop");
+    }
+
+    return 1;
+} 
+*/
+
+
+//////////////////////////////////////////////
+
+
+ 
+/* 
+//RX TEST  
+int main(void)
+{
+    rgb_led_setup();
+
+    setup_bnet_read();
+    while(1){
+        
+        uint8_t rb = bnet_receive_byte(0xff);
+
+        //uint8_t rb = bnet_receive_byte_data(0xff);
+
+
+        if (rb>0x00){
+            gpio_clear(GPIOB, GPIO7); //red off
+            gpio_set(GPIOB, GPIO8); //green on   
+
+        }else{
+            gpio_set(GPIOB, GPIO7); //red on
+            gpio_clear(GPIOB, GPIO8); //green off
+
+        }
+    }
+
+    return 1;
+} 
+*/ 
+
+
+ 
+
+
+
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+
+
+/*
+//TESTING  
 int main(void)
 {
 
@@ -50,51 +165,7 @@ int main(void)
 } 
 */
 
-
-
-
-/*
-//RX TEST  
-int main(void)
-{
-    rgb_led_setup();
-
-    setup_bnet_read();
-    while(1){
-        uint8_t rb = bnet_receive_byte(0xff);
-        if (rb==0x04){
-            gpio_set(GPIOB, GPIO7);
-        }else{
-            gpio_clear(GPIOB, GPIO7);
-            // blinkwait(dv, GPIOB, GPIO7); 
-            // blinkwait(dv, GPIOB, GPIO8); 
-            // blinkwait(dv, GPIOB, GPIO9);   
-
-        }
-    }
-
-    return 1;
-} 
-*/
-
-
-/*
-//TX TEST 
-int main(void)
-{
-    setup_bnet_write();
-    while(1){
-        //setup_bnet_write();
-       
-        bnet_send_byte(0xff, 0x02);
-        for (int i = 0; i < 1000; ++i) __asm__("nop");
-    }
-
-    return 1;
-} 
-*/
-
-////////////////////////////////////////////////////
+////////////////////////////
 
 
 /* 
@@ -124,10 +195,10 @@ int main(void)
 */ 
  
 
-////////////////////////////////////////////////////
+////////////////////////////
 
 
- 
+/* 
 int main(void) 
 {
     //rgb_led_setup();
@@ -144,7 +215,7 @@ int main(void)
         
         //test_leds();
 
-        blinkwait(100000, GPIOA, GPIO4); 
+        blinkwait(100000, GPIOB, GPIO10); 
         //blinkwait(100000, GPIOA, GPIO3); 
 
 
@@ -156,7 +227,7 @@ int main(void)
     }
 
 }
- 
+*/ 
 
 
 

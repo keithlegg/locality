@@ -44,6 +44,24 @@ void bnet_stop_cond(void)
     BNET_DELAY
 }
 
+       
+/*
+    listen for a pin to go high - if it does trigger an LED and write back to the same pin 
+    
+*/
+
+void bnet_testread(void)
+{
+    //make sure you have properly set up read 
+    setup_bnet_read(); 
+
+
+    //set it back when you are done 
+    setup_bnet_write(); 
+
+}
+
+
 void bnet_write_bit(uint8_t b)
 {
     if (b > 0)
@@ -95,9 +113,14 @@ void setup_bnet_read(void)
 uint8_t bnet_read_SDA(void)
 {
     //make sure you have properly setup the PORT/PIN for reading!!
-    //setup_bnet_read() will be for that 
+    setup_bnet_read(); 
 
-    if (gpio_get(SW_BNET_SDA_GPIO_Port, SW_BNET_SDA_Pin) == 1)
+    uint8_t read_ack_nack = gpio_get(SW_BNET_SDA_GPIO_Port, SW_BNET_SDA_Pin);
+
+    //set it back when you are done 
+    setup_bnet_write(); 
+
+    if (read_ack_nack == 1)
         return 1;
     else
         return 0;
@@ -124,6 +147,9 @@ uint8_t bnet_read_bit(void)
     return b;
 }
 
+
+//0 indicates master wants to WRITE
+//1 indicates master wants to READ  
 _Bool bnet_write_byte(uint8_t B,
                      _Bool start,
                      _Bool stop)
@@ -172,7 +198,7 @@ uint8_t bnet_read_byte(_Bool ack, _Bool stop)
 }
 
 
-// Sending a byte with BNET:
+// Sending a byte :
 _Bool bnet_send_byte(uint8_t address,
                     uint8_t data)
 {
@@ -189,7 +215,7 @@ _Bool bnet_send_byte(uint8_t address,
 }
 
 
-// Receiving a byte with a BNET:
+// Receiving a byte :
 uint8_t bnet_receive_byte(uint8_t address)
 {
     if (bnet_write_byte((address << 1) | 0x01, true, false)) // start, send address, read
